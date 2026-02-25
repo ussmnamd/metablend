@@ -52,18 +52,14 @@ export default function RootLayout({
     foundingDate: "2020",
     contactPoint: {
       "@type": "ContactPoint",
-      email: "hello@metablend.com",
+      email: "sales@metablend.com",
       contactType: "customer service",
       availableLanguage: ["English"],
     },
     address: [
       {
         "@type": "PostalAddress",
-        addressCountry: "CA",
-      },
-      {
-        "@type": "PostalAddress",
-        addressCountry: "BH",
+        addressCountry: "GB",
       },
       {
         "@type": "PostalAddress",
