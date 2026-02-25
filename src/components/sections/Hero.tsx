@@ -61,7 +61,7 @@ export function Hero() {
                                 <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                             ))}
                         </div>
-                        <span className="text-slate-400">Trusted by 100+ companies across North America & Europe</span>
+                        <span className="text-slate-400">Trusted by leading companies across the UK and worldwide</span>
                     </div>
                 </motion.div>
 
