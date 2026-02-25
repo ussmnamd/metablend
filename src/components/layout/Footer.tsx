@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Linkedin, Twitter, Mail, MapPin } from "lucide-react";
 
 const servicesLinks = [
-    { href: "/services/customer-support", label: "Customer Support" },
+    { href: "/services/marketing", label: "Marketing & SMM" },
     { href: "/services/tech-staffing", label: "Tech & Engineering" },
     { href: "/services/design-creative", label: "Design & Creative" },
-    { href: "/services/back-office", label: "Back-Office & Operations" },
+    { href: "/services/customer-support-operations", label: "Support & Operations" },
 ];
 
 const companyLinks = [
@@ -70,7 +70,7 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    {/* Company */}
+                    {/* Company Info */}
                     <div>
                         <h4 className="font-semibold text-white mb-4">Company</h4>
                         <ul className="space-y-3">
@@ -85,6 +85,11 @@ export function Footer() {
                                 </li>
                             ))}
                         </ul>
+                        <div className="mt-6 pt-6 border-t border-slate-800">
+                            <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Co-Founders</p>
+                            <p className="text-sm text-slate-300">Ali Imran Malik</p>
+                            <p className="text-sm text-slate-300">Faiz Subhani</p>
+                        </div>
                     </div>
 
                     {/* Contact */}
@@ -93,16 +98,18 @@ export function Footer() {
                         <ul className="space-y-3">
                             <li className="flex items-start gap-3 text-slate-400 text-sm">
                                 <Mail className="w-5 h-5 text-primary-green shrink-0 mt-0.5" />
-                                <a href="mailto:hello@metablend.com" className="hover:text-primary-green transition-colors">
-                                    hello@metablend.com
+                                <a href="mailto:sales@metablend.com" className="hover:text-primary-green transition-colors">
+                                    sales@metablend.com
                                 </a>
                             </li>
                             <li className="flex items-start gap-3 text-slate-400 text-sm">
                                 <MapPin className="w-5 h-5 text-primary-green shrink-0 mt-0.5" />
                                 <div className="space-y-1">
-                                    <p>Canada</p>
-                                    <p>Bahrain</p>
+                                    <p className="font-semibold text-white text-xs uppercase tracking-wider mb-1">Headquartered</p>
+                                    <p>United Kingdom</p>
+                                    <p className="font-semibold text-white text-xs uppercase tracking-wider mt-2 mb-1">Operations</p>
                                     <p>Pakistan</p>
+                                    <p className="mt-2">+92-3323999370</p>
                                 </div>
                             </li>
                         </ul>

@@ -1,82 +1,114 @@
 "use client";
 
-import { useState } from "react";
 import { Star } from "lucide-react";
+import Image from "next/image";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { testimonials } from "@/content/testimonials";
 
-const industries = ["All", "SaaS", "FinTech", "Healthcare", "Marketing", "Professional Services"];
+const clientLogos = [
+    "/clients/clientlogo1.jpeg",
+    "/clients/clientlogo2.jpeg",
+    "/clients/clientlogo3.jpeg",
+    "/clients/clientlogo4.jpeg",
+    "/clients/clientlogo6.jpeg",
+    "/clients/clientlogo7.jpeg",
+    "/clients/clientlogo8.jpeg",
+    "/clients/clientlogo9.jpeg",
+    "/clients/clientlogo10.jpeg",
+];
 
 export default function TestimonialsPage() {
-    const [activeFilter, setActiveFilter] = useState("All");
-
-    const filteredTestimonials = activeFilter === "All"
-        ? testimonials
-        : testimonials.filter(t => t.industry === activeFilter);
-
     return (
         <>
             {/* Hero */}
-            <section className="pt-32 pb-16 md:pb-24 bg-background-light">
-                <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <FadeIn className="text-center max-w-3xl mx-auto">
+            <section className="pt-32 pb-16 bg-background-light">
+                <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+                    <FadeIn className="max-w-3xl mx-auto">
                         <Badge variant="green" className="mb-4">Client Stories</Badge>
                         <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
-                            What Our Clients Say
+                            Trusted by Industry Leaders
                         </h1>
                         <p className="text-lg text-text-secondary">
-                            Don&apos;t just take our word for it. Here&apos;s what companies who&apos;ve scaled with Meta Blend have to say.
+                            Discover how Meta Blend has helped companies across the globe scale their operations and achieve exceptional results.
                         </p>
                     </FadeIn>
                 </div>
             </section>
 
-            {/* Filter */}
-            <section className="py-8 bg-white border-b border-slate-100 sticky top-16 z-40">
-                <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                        {industries.map((industry) => (
-                            <button
-                                key={industry}
-                                onClick={() => setActiveFilter(industry)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeFilter === industry
-                                    ? "bg-primary-green text-white"
-                                    : "bg-slate-100 text-text-secondary hover:bg-slate-200"
-                                    }`}
-                            >
-                                {industry}
-                            </button>
+            {/* Client Logos Wall */}
+            <section className="py-12 bg-white border-y border-slate-100 overflow-hidden">
+                <div className="relative flex">
+                    <div className="flex animate-marquee whitespace-nowrap gap-12 items-center">
+                        {[...clientLogos, ...clientLogos].map((logo, i) => (
+                            <div key={i} className="w-32 md:w-48 h-20 relative grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <Image
+                                    src={logo}
+                                    alt="Client Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>
+
+                {/* CSS for marquee if not in globals.css */}
+                <style jsx>{`
+                    @keyframes marquee {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    .animate-marquee {
+                        display: flex;
+                        animation: marquee 40s linear infinite;
+                        width: max-content;
+                    }
+                    section:hover .animate-marquee {
+                        animation-play-state: paused;
+                    }
+                `}</style>
             </section>
 
             {/* Testimonials Grid */}
             <section className="py-16 md:py-24 bg-background-light">
-                <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredTestimonials.map((testimonial) => (
+                <div className="max-w-5xl mx-auto px-6 md:px-8">
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {testimonials.map((testimonial) => (
                             <FadeIn key={testimonial.id}>
-                                <Card className="h-full border-l-4 border-l-primary-green">
-                                    <div className="flex gap-1 mb-3">
+                                <Card className="h-full border-t-4 border-t-primary-green relative overflow-hidden group">
+                                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                                        <svg width="60" height="45" viewBox="0 0 60 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.2857 0L0 20H11.4286V45H28.5714V20H17.1429L31.4286 0H14.2857ZM42.8571 0L28.5714 20H40V45H57.1429V20H45.7143L60 0H42.8571Z" fill="currentColor" />
+                                        </svg>
+                                    </div>
+                                    <div className="flex gap-1 mb-6">
                                         {[...Array(testimonial.rating)].map((_, i) => (
-                                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                            <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                                         ))}
                                     </div>
-                                    <blockquote className="text-sm text-text-secondary mb-4 line-clamp-5">
+                                    <blockquote className="text-xl italic text-text-primary mb-8 leading-relaxed">
                                         &quot;{testimonial.quote}&quot;
                                     </blockquote>
-                                    <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                                        <div className="w-12 h-12 rounded-full bg-primary-green/10 flex items-center justify-center">
-                                            <span className="font-semibold text-primary-green text-sm">
-                                                {testimonial.author.split(' ').map(n => n[0]).join('')}
-                                            </span>
+                                    <div className="flex items-center gap-4 pt-6 border-t border-slate-100">
+                                        <div className="w-16 h-16 rounded-2xl overflow-hidden bg-primary-green/10 flex items-center justify-center relative">
+                                            {testimonial.avatar ? (
+                                                <Image
+                                                    src={testimonial.avatar}
+                                                    alt={testimonial.author}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            ) : (
+                                                <span className="text-xl font-bold text-primary-green">
+                                                    {testimonial.author.split(' ').map(n => n[0]).join('')}
+                                                </span>
+                                            )}
                                         </div>
                                         <div>
-                                            <div className="font-semibold text-text-primary">{testimonial.author}</div>
-                                            <div className="text-xs text-text-muted">
+                                            <div className="font-bold text-lg text-text-primary">{testimonial.author}</div>
+                                            <div className="text-sm text-primary-green font-medium">
                                                 {testimonial.role}, {testimonial.company}
                                             </div>
                                         </div>
@@ -85,12 +117,6 @@ export default function TestimonialsPage() {
                             </FadeIn>
                         ))}
                     </div>
-
-                    {filteredTestimonials.length === 0 && (
-                        <div className="text-center py-12">
-                            <p className="text-text-muted">No testimonials found for this category.</p>
-                        </div>
-                    )}
                 </div>
             </section>
 
@@ -98,32 +124,33 @@ export default function TestimonialsPage() {
             <section className="py-16 md:py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
                     <FadeIn className="max-w-4xl mx-auto">
-                        <Badge variant="green" className="mb-4">Featured Case Study</Badge>
-                        <Card className="bg-surface-dark text-white border-0">
-                            <div className="grid md:grid-cols-2 gap-8 items-center">
+                        <Badge variant="green" className="mb-4">Case Study Highlights</Badge>
+                        <Card className="bg-surface-dark text-white border-0 overflow-hidden relative">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-green/10 rounded-full -mr-32 -mt-32 blur-3xl opacity-50"></div>
+                            <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
                                 <div>
                                     <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                                        40% Cost Reduction While Doubling Support Capacity
+                                        40% Cost Reduction While Doubling Capacity
                                     </h2>
                                     <p className="text-slate-300 mb-6">
-                                        A fast-growing SaaS company needed to scale their customer support team without breaking the bank. Meta Blend built a dedicated 24/7 support team that reduced response times by 60% and cut costs by 40%.
+                                        Our remote teams don&apos;t just save money—they improve performance. We helped NZF UK transition their entire CRM operations, resulting in unprecedented efficiency.
                                     </p>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <div className="text-center p-4 bg-slate-800 rounded-lg">
+                                        <div className="text-center p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
                                             <div className="text-3xl font-bold text-primary-green">40%</div>
                                             <div className="text-xs text-slate-400">Cost Savings</div>
                                         </div>
-                                        <div className="text-center p-4 bg-slate-800 rounded-lg">
-                                            <div className="text-3xl font-bold text-primary-green">60%</div>
-                                            <div className="text-xs text-slate-400">Faster Responses</div>
+                                        <div className="text-center p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                                            <div className="text-3xl font-bold text-primary-green">100%</div>
+                                            <div className="text-xs text-slate-400">Reliability</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="hidden md:block">
-                                    <div className="aspect-square bg-slate-800 rounded-xl flex items-center justify-center">
-                                        <div className="text-center">
-                                            <div className="text-5xl font-bold text-primary-green mb-2">TechFlow</div>
-                                            <div className="text-slate-400">SaaS Company</div>
+                                    <div className="aspect-video bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700">
+                                        <div className="text-center p-8">
+                                            <div className="text-4xl font-bold text-white mb-2 tracking-tight">NZF UK</div>
+                                            <p className="text-slate-400 text-sm">Empowering communities through digital transformation</p>
                                         </div>
                                     </div>
                                 </div>

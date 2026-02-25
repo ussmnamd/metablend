@@ -30,16 +30,13 @@ const values = [
 ];
 
 const team = [
-    { name: "Sarah Johnson", role: "CEO & Founder", location: "Canada" },
-    { name: "Ahmed Hassan", role: "COO", location: "Bahrain" },
-    { name: "Maria Garcia", role: "Head of Operations", location: "USA" },
-    { name: "James Chen", role: "Head of Talent", location: "Singapore" },
+    { name: "Ali Imran Malik", role: "Co-Founder", location: "UK" },
+    { name: "Faiz Subhani", role: "Co-Founder", location: "UK" },
 ];
 
 const locations = [
-    { name: "Canada", flag: "🇨🇦", description: "North American HQ" },
-    { name: "Bahrain", flag: "🇧🇭", description: "Middle East Hub" },
-    { name: "Pakistan", flag: "🇵🇰", description: "South Asia Operations" },
+    { name: "United Kingdom", flag: "🇬🇧", description: "Global HQ" },
+    { name: "Pakistan", flag: "🇵🇰", description: "Operations Hub" },
 ];
 
 export default function AboutPage() {

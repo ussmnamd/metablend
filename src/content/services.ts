@@ -1,5 +1,14 @@
-import { Headphones, Code2, Palette, Briefcase } from "lucide-react";
+import { Headphones, Code2, Palette, Briefcase, Megaphone, Share2 } from "lucide-react";
 import React from "react";
+
+export interface MarketingPackage {
+    name: string;
+    price: string;
+    platforms: string;
+    posts: string;
+    seo: string;
+    bestFor: string;
+}
 
 export interface Service {
     slug: string;
@@ -10,25 +19,71 @@ export interface Service {
     features: string[];
     teamSizeRange: string;
     industry: string[];
+    packages?: MarketingPackage[];
+    isPremium?: boolean;
 }
 
 export const services: Service[] = [
     {
-        slug: "customer-support",
-        title: "Customer Support",
-        icon: "Headphones",
-        tagline: "Always-on support teams that feel like your own",
-        description: "Provide exceptional customer experiences with our dedicated support teams. Available 24/7 across multiple channels to resolve issues quickly and keep your customers satisfied.",
+        slug: "marketing",
+        title: "Social Media & Digital Marketing",
+        icon: "Megaphone",
+        tagline: "Amplify your brand voice with targeted digital strategies",
+        description: "Scale your presence across digital channels with our expert marketing teams. We specialize in social media management, content strategy, and high-performance paid advertising.",
         features: [
-            "24/7 coverage across all time zones",
-            "Omnichannel support (phone, email, chat, social)",
-            "Multi-language capabilities",
-            "Customized scripts and workflows",
-            "Quality assurance and monitoring",
-            "Dedicated team lead"
+            "Comprehensive Social Media Management",
+            "Digital Marketing Strategy & Execution",
+            "Search Engine Optimization (SEO)",
+            "Content Creation & Scheduling",
+            "Performance Tracking & Reporting",
+            "Paid Ads Management (Google & Meta)"
         ],
-        teamSizeRange: "2-50 agents",
-        industry: ["SaaS", "E-commerce", "FinTech", "Healthcare"]
+        teamSizeRange: "1-5 specialists",
+        industry: ["SaaS", "E-commerce", "Personal Brands", "Real Estate"],
+        isPremium: true,
+        packages: [
+            {
+                name: "The Lite Start",
+                price: "£200 /mo",
+                platforms: "Instagram + LinkedIn (Brief)",
+                posts: "10-12 Posts /mo",
+                seo: "N/A",
+                bestFor: "New Brands / Personal"
+            },
+            {
+                name: "The Growth Pro",
+                price: "£300 /mo",
+                platforms: "IG + LI + SEO (Basic)",
+                posts: "15-20 Posts /mo",
+                seo: "Basic On-Page",
+                bestFor: "Small Businesses seeking growth"
+            },
+            {
+                name: "The Full Authority",
+                price: "£500 /mo",
+                platforms: "IG + FB + LI + SEO (Full)",
+                posts: "20-25 Posts /mo",
+                seo: "Full Monthly SEO",
+                bestFor: "Established Brands"
+            }
+        ]
+    },
+    {
+        slug: "customer-support-operations",
+        title: "Support & Operations",
+        icon: "Headphones",
+        tagline: "Seamless support and back-office operations",
+        description: "A merged solution for companies needing both customer-facing support and behind-the-scenes operational excellence. We handle the logistics so you can focus on the vision.",
+        features: [
+            "24/7 Customer Support (Phone, Email, Chat)",
+            "Back-Office Administrative Support",
+            "Data Entry & Management",
+            "Finance & Accounting Assistance",
+            "HR & Payroll Support",
+            "Quality Assurance & Process Improvement"
+        ],
+        teamSizeRange: "3-50 staff",
+        industry: ["E-commerce", "Healthcare", "Legal", "Enterprise"]
     },
     {
         slug: "tech-staffing",
@@ -63,23 +118,6 @@ export const services: Service[] = [
         ],
         teamSizeRange: "1-10 designers",
         industry: ["SaaS", "E-commerce", "Marketing Agencies", "Media"]
-    },
-    {
-        slug: "back-office",
-        title: "Back-Office & Operations",
-        icon: "Briefcase",
-        tagline: "Streamline your operations with efficient administrative support",
-        description: "Keep your business running smoothly with dedicated operational support. From data entry to financial processing, we handle the details so you can focus on growth.",
-        features: [
-            "Data entry & management",
-            "Finance & accounting support",
-            "HR & payroll assistance",
-            "Virtual assistants",
-            "Document processing",
-            "Customer service support"
-        ],
-        teamSizeRange: "2-30 staff",
-        industry: ["Enterprise", "Healthcare", "Legal", "Real Estate"]
     }
 ];
 
@@ -88,7 +126,9 @@ const iconComponents: Record<string, React.ComponentType<{ className?: string }>
     Headphones,
     Code2,
     Palette,
-    Briefcase
+    Briefcase,
+    Megaphone,
+    Share2
 };
 
 export function getServiceIcon(iconName: string): React.ComponentType<{ className?: string }> {
